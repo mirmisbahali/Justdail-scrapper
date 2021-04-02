@@ -21,9 +21,9 @@ Python LXML, for parsing the HTML Tree Structure using Xpaths (Learn how to inst
 
 `pip install requests`
 
-`pip install urllib`
+`pip install urllib3`
 
-`pip install csv`
+`pip install python-csv`
 
 
 #### Running the scraper
