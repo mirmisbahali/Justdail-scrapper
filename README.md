@@ -25,6 +25,8 @@ Python LXML, for parsing the HTML Tree Structure using Xpaths (Learn how to inst
 
 `pip install python-csv`
 
+`pip install lxml`
+
 
 #### Running the scraper
 We would execute the code with the script name followed by the positional arguments keyword and place.
