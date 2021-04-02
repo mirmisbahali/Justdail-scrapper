@@ -47,8 +47,9 @@ def get_phone_number(body):
                     pass
     except:
         pass
-    body = body['data-href']
-    soup = BeautifulSoup(body, 'html.parser')
+    url = body['data-href']
+    req = requests.get(url).text
+    soup = BeautifulSoup(req, 'lxml')
     for a in soup.find_all('a', {"id":"whatsapptriggeer"} ):
         # print (a)
         phoneNo = str(a['href'][-10:])
@@ -102,22 +103,23 @@ while True:
 	if page_number > 50:
 		break
 
-	url="https://www.justdial.com/Rajkot/Hardware-Shops-in-Rajkot/nct-10243514/page-%s" % (page_number)
+	url="https://www.justdial.com/Hyderabad/On-Call-Doctor/nct-11310787/page-%s" % (page_number)
 	print(url)
 	req = urllib.request.Request(url, headers={'User-Agent' : "Mozilla/5.0 (Windows NT 6.1; Win64; x64)"}) 
 	page = urllib.request.urlopen( req )
 	# page=urllib2.urlopen(url)
 
-	soup = BeautifulSoup(page.read(), "html.parser")
+	soup = BeautifulSoup(page.read(), "lxml")
 	services = soup.find_all('li', {'class': 'cntanr'})
-
+	# print(services)
+	# exit()
 	# Iterate through the 10 results in the page
 	for service_html in services:
 
 		# Parse HTML to fetch data     
 		dict_service = {}
 		name = get_name(service_html)
-		print(name);
+		print(name)
 		phone = get_phone_number(service_html)
 		rating = get_rating(service_html)
 		count = get_rating_count(service_html)
@@ -146,3 +148,4 @@ while True:
 	page_number += 1
 
 out_file.close()
+
